@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { nanoid } from "nanoid";
-import type { Column } from '~/types';
+import type { Column } from '@/types';
 
 const columns = ref<Column[]>([
   {
@@ -54,8 +54,14 @@ const columns = ref<Column[]>([
       :key="column.id"
       class="column bg-gray-200 p-5 rounded min-w-[250px]"
     >
-      <header>{{ column.title }}</header>
-      <p v-for="task in column.tasks" :key="task.id">{{ task.title }}</p>
+      <header class="font-bold mb-4">{{ column.title }}</header>
+      <TaskCard v-for="task in column.tasks" :key="task.id" :task="task" />
+      <footer>
+        <button
+          type="button"
+          class="text-gray-500"
+        >+ Add a Card</button>
+      </footer>
     </div>
   </div>
 </template>
