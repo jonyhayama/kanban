@@ -2,6 +2,9 @@
 import { nanoid } from "nanoid";
 import draggable from "vuedraggable";
 import type { Column, Task } from '@/types';
+import { useKeyModifier } from "@vueuse/core";
+
+const ctrlKey = useKeyModifier('Control');
 
 const columns = ref<Column[]>([
   {
@@ -67,7 +70,7 @@ const columns = ref<Column[]>([
         </header>
         <draggable
           v-model="column.tasks"
-          group="tasks"
+          :group="{ name: 'tasks', pull: ctrlKey ? 'clone' : true }"
           item-key="id"
           :animation="150"
           handle=".drag-handle"
