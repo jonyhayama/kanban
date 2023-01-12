@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { nanoid } from "nanoid";
 import draggable from "vuedraggable";
-import type { Column } from '@/types';
+import type { Column, Task } from '@/types';
 
 const columns = ref<Column[]>([
   {
@@ -65,7 +65,17 @@ const columns = ref<Column[]>([
           <DragHandle />
           {{ column.title }}
         </header>
-        <TaskCard v-for="task in column.tasks" :key="task.id" :task="task" />
+        <draggable
+          v-model="column.tasks"
+          group="tasks"
+          item-key="id"
+          :animation="150"
+          handle=".drag-handle"
+        >
+          <template #item="{ element: task }: { element: Task }">
+            <TaskCard :task="task" />
+          </template>
+        </draggable>
         <footer>
           <button
             type="button"
