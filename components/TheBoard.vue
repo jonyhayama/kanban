@@ -76,7 +76,9 @@ const columns = ref<Column[]>([
           handle=".drag-handle"
         >
           <template #item="{ element: task }: { element: Task }">
-            <TaskCard :task="task" />
+            <div>
+              <TaskCard :task="task" />
+            </div>
           </template>
         </draggable>
         <footer>

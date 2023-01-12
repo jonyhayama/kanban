@@ -15,3 +15,17 @@ defineProps<{
     <span>{{ task.title }}</span>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.sortable-drag .task {
+  transform: rotate(5deg);
+}
+.sortable-ghost .task {
+  @apply relative;
+
+  &:after {
+    content: '';
+    @apply absolute top-0 bottom-0 left-0 right-0 bg-slate-300 rounded;
+  }
+}
+</style>
