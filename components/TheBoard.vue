@@ -6,7 +6,7 @@ import { useKeyModifier } from "@vueuse/core";
 
 const ctrlKey = useKeyModifier('Control');
 
-const columns = ref<Column[]>([
+const columns = useLocalStorage<Column[]>('kanban-board', [
   {
     id: nanoid(),
     title: 'Backlog',
