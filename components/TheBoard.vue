@@ -61,6 +61,14 @@ function createColumn() {
     (document.querySelector('.column:last-of-type .title-input') as HTMLInputElement).focus();
   });
 }
+
+// Idea on how to persist to BE
+// NOTE: this (for some reason) is firing twice... 🤔
+watch(columns, () => {
+  console.log('columns have changed, send info to BE')
+}, {
+  deep: true
+})
 </script>
 
 <template>
