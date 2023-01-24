@@ -77,7 +77,7 @@ const columns = ref<Column[]>([
         >
           <template #item="{ element: task }: { element: Task }">
             <div>
-              <TaskCard :task="task" />
+              <TaskCard :task="task" @delete="column.tasks = column.tasks.filter(t => t.id !== $event)" />
             </div>
           </template>
         </draggable>
